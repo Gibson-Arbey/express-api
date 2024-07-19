@@ -19,8 +19,9 @@ const usuariosGet = async(req = request, res = response) => {
     ]);
 
     res.json({
+        "Usuario autenticado": req.usuario._id,
         total,
-        usuarios
+        usuarios,
     });
 }
 
