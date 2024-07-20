@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-const { userLogin } = require("../controllers/auth");
+const { userLogin, googleSignIn } = require("../controllers/auth");
 const { validarCampos } = require("../middlewares/validar-campos");
 
 const router = Router();
@@ -57,4 +57,19 @@ router.post(
   userLogin
 );
 
+
+/**
+ * @swagger
+ * /api/auth/login-google:
+ *  post:
+ *    summary: endpoint para loguear en la aplicacion usando Google
+ */
+router.post(
+  "/login-google",
+  [
+    check("id_token", "El id_token no es valido.").not().isEmpty(),
+    validarCampos,
+  ],
+  googleSignIn
+);
 module.exports = router;
