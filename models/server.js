@@ -1,5 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+// swagger
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerSpec  = require("../swagger-config")
 
 const { dbConexion } = require('../database/config');
 
@@ -19,6 +23,9 @@ class Server {
 
         // Rutas de mi aplicación
         this.routes();
+
+        // Documentacion de mi aplicación
+        this.app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
     }
 
     async conectarDB() {
