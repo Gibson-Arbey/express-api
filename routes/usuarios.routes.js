@@ -9,7 +9,7 @@ const { usuariosGet,
         usuariosPut,
         usuariosPost,
         usuariosDelete,
-        usuariosPatch } = require('../controllers/usuarios');
+        usuariosPatch } = require('../controllers');
 const { validarJwt, validarCampos, isAdmin, tieneRol } = require('../middlewares');
 
 const router = Router();
