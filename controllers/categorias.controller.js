@@ -51,12 +51,15 @@ const crearCategoria = async (req = request, res = response) => {
 
 const actualizarCategoria = async (req = request, res = response) => {
   const { id } = req.params;
-  const { nombre } = req.body;
+  const nombre = req.body.nombre.toUpperCase();
   const categoria = await Categoria.findOne({ nombre });
   if (categoria) {
     return res.status(400).json({ msg: "La categoria ya existe" });
   }
-  await Categoria.findByIdAndUpdate(id, { nombre });
+  await Categoria.findByIdAndUpdate(id, { 
+    nombre,
+    usuario: req.usuario._id
+ });
   return res
     .status(200)
     .json({ msg: "La categoria se actualizo exitosamente" });
