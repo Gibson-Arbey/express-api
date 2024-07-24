@@ -2,4 +2,8 @@
 
 node_modules/
 
+uploads/**.jpg
+uploads/**.png
+uploads/**.jpeg
+uploads/**.gif
 .env
